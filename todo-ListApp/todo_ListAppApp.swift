@@ -20,7 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct YourApp: App {
+struct todo_ListAppApp: App {
+    @StateObject private var authManager = AuthManager.shared
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
@@ -31,6 +32,8 @@ struct YourApp: App {
         ContentView()
       }
     }
+    .environmentObject(authManager)
     .modelContainer(for: [Task.self, Profile.self])
+      
   }
 }

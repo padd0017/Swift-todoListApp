@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Task {
+class Task{
     var title: String
     var notes: String?
     var dueDate: Date?
