@@ -13,6 +13,7 @@ class AuthManager: ObservableObject {
         static let shared = AuthManager()
         @Published var user: User?
         @Published var isSignedIn: Bool = false
+        @Published var error: Bool = false
     
     init(user: User? = nil, isSignedIn: Bool = false) {
           self.user = user
@@ -24,9 +25,11 @@ class AuthManager: ObservableObject {
       }
     
     
-    func login(email: String, password: String) async throws -> Bool {
-        try await Auth.auth().signIn(withEmail: email, password: password)
-        return true
+    func login(email: String, password: String) async throws-> Bool {
+            try await Auth.auth().signIn(withEmail: email, password: password)
+            return true
+        
+     
     }
     
     

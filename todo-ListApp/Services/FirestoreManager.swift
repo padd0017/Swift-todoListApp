@@ -7,7 +7,7 @@ class FirestoreManager {
     let db = Firestore.firestore()
     private init() {}
     
-    func saveTask(task: Task) async throws -> String {
+    func saveTask(task: Tasks) async throws -> String {
         let taskData: [String: Any] = [
             "title": task.title,
             "notes": task.notes ?? "",
@@ -28,7 +28,7 @@ class FirestoreManager {
     }
     
     
-    func deleteTask(task: Task) async throws {
+    func deleteTask(task: Tasks) async throws {
         guard let firebaseId = task.firebaseId else {
             print("Error deleting the task: No firebase ID found.")
             return
@@ -42,7 +42,7 @@ class FirestoreManager {
     }
     
     
-    func updateTask(task: Task) async throws {
+    func updateTask(task: Tasks) async throws {
         
         let updatedTask: [String: Any] = [
             "title": task.title,

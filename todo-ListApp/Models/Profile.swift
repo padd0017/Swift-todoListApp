@@ -16,8 +16,8 @@ class Profile {
     var name: String
     
     
-    init(id: UUID, email: String, name: String) {
-        self.id = id
+    init(userId: String, email: String, name: String) {
+        self.userId = userId
         self.email = email
         self.name = name
     }

@@ -33,7 +33,7 @@ struct todo_ListAppApp: App {
       }
     }
     .environmentObject(authManager)
-    .modelContainer(for: [Task.self, Profile.self])
+    .modelContainer(for: [Tasks.self, Profile.self])
       
   }
 }
