@@ -13,10 +13,11 @@ import SwiftUI
 
 
 struct CreateTaskView:  View {
+    @envire
     
     var body: some View {
-        HStack{
-            Text("Create is mine")
+        NavigationStack {
+            
         }
     }
 }
