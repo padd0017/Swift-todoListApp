@@ -19,20 +19,30 @@ struct LoginView:  View {
     
     var body: some View {
         NavigationStack{
-            VStack{
+            VStack(spacing: 10){
                 
                 if let errorMessage = errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
+                        .padding()
                 }
                 
                 TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .padding()
+                    .background(Color(.systemGray6))
                     .autocapitalization(.none)
+                    .cornerRadius(10)
+                
+                
                 SecureField("Password", text: $password)
-                HStack {
-                    
-                    
-                    Button("Login") {
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .autocapitalization(.none)
+                    .cornerRadius(10)
+                
+                
+                    Button("Login"){
                         Task {
                             do {
                                 _ = try await authManager.login(email: email, password: password)
@@ -42,7 +52,12 @@ struct LoginView:  View {
                             }
                         }
                     }
-                    .padding()
+                    .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(email.isEmpty || password.isEmpty ? Color.gray : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                     
                     Button("Create Account") {
                         Task {
@@ -52,13 +67,16 @@ struct LoginView:  View {
                     .sheet(isPresented: $ShowSignUpView ){
                         CreateAccountView()
                     }
+                    .foregroundColor(.blue)
+                    
                     
                    
-                } //HStack
+               
                 
                 
             }//VStack
             .navigationTitle("Login")
+            .padding()
         }//NavigationStack
         
     }

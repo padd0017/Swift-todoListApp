@@ -21,17 +21,36 @@ struct CreateAccountView:  View {
     var body: some View {
         NavigationStack{
             
-            VStack(spacing: 20){
+            VStack(spacing: 24){
                 Text("Create Account")
-                    .font(.headline)
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundStyle(.black)
                 
                 TextField("Name", text: $name)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .autocapitalization(.none)
+                    .cornerRadius(10)
+                    .foregroundColor(Color(.black))
+                
                 TextField("Email", text: $email)
                     .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
                     .padding()
+                    .background(Color(.systemGray6))
+                    .autocapitalization(.none)
+                    .cornerRadius(10)
+                    .foregroundColor(Color(.black))
+                
                 
                 SecureField("Password", text: $password)
                     .padding()
+                    .background(Color(.systemGray6))
+                    .autocapitalization(.none)
+                    .cornerRadius(10)
+                    .foregroundColor(Color(.black))
+                
                 
                 if let errorMessage = errorMessage {
                         Text(errorMessage)
@@ -42,7 +61,14 @@ struct CreateAccountView:  View {
                         await createAccount()
                     }
                 }
-            }//Vstack
+                .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(email.isEmpty || password.isEmpty ? Color.gray : Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .padding()//Vstack
         }//navigationStack
     }
     

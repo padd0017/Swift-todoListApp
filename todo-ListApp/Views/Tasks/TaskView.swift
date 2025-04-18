@@ -21,11 +21,17 @@ struct TaskView:  View {
             ZStack {
                 VStack {
                     if tasks.isEmpty {
-                        VStack(spacing: 20) {
+                        Spacer()
+                        VStack(alignment: .center, spacing: 12) {
                             Image(systemName: "tray")
                                 .font(.system(size: 48))
+                                .foregroundColor(.gray)
                             Text("No Tasks Found")
+                                .font(.headline)
+                                .foregroundColor(.gray)
                             Text("Please click below to add one ")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
                         Spacer()
                     } else {
