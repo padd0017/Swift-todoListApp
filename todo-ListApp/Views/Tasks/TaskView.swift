@@ -35,7 +35,6 @@ struct TaskView:  View {
                         }
                         Spacer()
                     } else {
-                        Spacer()
                         List {
                             ForEach(tasks) {task in
                                 NavigationLink(destination: TaskDetailView(task: task)){
@@ -79,18 +78,19 @@ struct TaskView:  View {
     
     
     private func taskList(task: Tasks) -> some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack {
-                
-                
                 Text(task.title)
+                    .font(.headline)
+                    .strikethrough(task.isDone, color: .gray)
                 Spacer()
                 if let dueDate = task.dueDate {
                     Text(dueDate.formatted())
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
             }
+            .padding(10)
             .swipeActions(edge: .leading) {
                 Button("Mark as Completed"){
                     task.isDone.toggle()
@@ -100,8 +100,6 @@ struct TaskView:  View {
             .swipeActions(edge: .trailing){
                 Button("Delete", role: .destructive) {
                     context.delete(task)
-                    
-                    
                     do {
                         try context.save()
                         print("deleted form swift data now going to delete from firestore")

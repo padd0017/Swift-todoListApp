@@ -41,7 +41,7 @@ struct UpdateTaskView:  View {
                 )
                 .navigationTitle("Edit Task")
                 .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Cancel") { dismiss() }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {

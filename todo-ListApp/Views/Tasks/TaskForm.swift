@@ -17,16 +17,43 @@ struct TaskForm: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Task Details")) {
+            Section {
                 TextField("Title", text: $title)
-                TextField("Notes (optional)", text: $notes)
-                DatePicker("Due Date (optional)", selection: $dueDate, displayedComponents: .date)
+                    .font(.headline)
+                    .padding(.vertical, 12)
+                
+                TextField("Notes", text: $notes)
+                    .padding(.vertical, 12)
+                
+                DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                    .padding(.vertical, 8)
+                    .labelsHidden()
+            } header: {
+                SectionHeader(text: "Task Details")
             }
-            
-            Section(header: Text("Additional Info")) {
-                TextField("Location (optional)", text: $location)
-                TextField("Category (optional)", text: $category)
+
+            Section {
+                TextField("Location", text: $location)
+                    .padding(.vertical, 12)
+                
+                TextField("Category", text: $category)
+                    .padding(.vertical, 12)
+            } header: {
+                SectionHeader(text: "Additional Info")
             }
         }
+        .listStyle(.grouped)
+        .environment(\.horizontalSizeClass, .regular)
+    }
+}
+
+private struct SectionHeader: View {
+    let text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.subheadline)
+            .foregroundColor(.gray)
+            .padding(.bottom, 8)
     }
 }
