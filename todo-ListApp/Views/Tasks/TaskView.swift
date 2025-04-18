@@ -64,7 +64,7 @@ struct TaskView:  View {
             }
             .navigationTitle("Google Tasks")
             .toolbar{
-                NavigationLink(destination: ProfileView()) {
+                NavigationLink(destination: ProfileView(tasks: tasks)) {
                     Image(systemName: "person.crop.circle").font(.title2)
                 }    //NavigationStack
             }

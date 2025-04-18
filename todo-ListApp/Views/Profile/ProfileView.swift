@@ -11,12 +11,17 @@ import SwiftUI
 
 
 struct ProfileView:  View {
+    var tasks: Tasks
     @EnvironmentObject var authManager: AuthManager
+    @Environment(\.modelContext) private var context
     var body: some View {
         HStack{
             Button("Logout"){
                 Task {
-                    try  authManager.logout()
+                    context.delete(tasks)
+                  _ =  try authManager.logout()
+                
+                    
                 }
             }
         }

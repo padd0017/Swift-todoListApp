@@ -37,7 +37,7 @@ struct TaskDetailView:  View {
                 }
                 
                 
-                NavigationLink(destination: UpdateTaskView()) {
+                NavigationLink(destination: UpdateTaskView(task: task)) {
                     Text("Update Task")
                 }
                     

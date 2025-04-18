@@ -45,6 +45,10 @@ class FirestoreManager {
     
     
     func updateTask(task: Tasks) async throws {
+        guard let id = task.firebaseId else {
+            print("updatetask: no firebaseID, cannot update Remotly")
+            return
+        }
         
         let updatedTask: [String: Any] = [
             "title": task.title,
@@ -56,7 +60,7 @@ class FirestoreManager {
         ]
         
         do {
-            try await db.collection("tasks").document(task.firebaseId!).updateData(updatedTask)
+            try await db.collection("tasks").document(id).updateData(updatedTask)
             
         } catch {
             print("Error updating the task data: \(error)")
