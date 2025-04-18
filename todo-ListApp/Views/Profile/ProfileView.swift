@@ -11,10 +11,14 @@ import SwiftUI
 
 
 struct ProfileView:  View {
-    
+    @EnvironmentObject var authManager: AuthManager
     var body: some View {
         HStack{
-            Text("Profile is mine")
+            Button("Logout"){
+                Task {
+                    try  authManager.logout()
+                }
+            }
         }
     }
 }

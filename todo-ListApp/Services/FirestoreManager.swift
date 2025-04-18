@@ -20,6 +20,7 @@ class FirestoreManager {
         do {
             let ref = try await db.collection("tasks").addDocument(data: taskData)
             task.firebaseId = ref.documentID
+            print("i saved it to firestore done sir")
             return ref.documentID
         } catch {
             print("Error saving the task data: \(error)")
@@ -36,6 +37,7 @@ class FirestoreManager {
         
         do {
             try await db.collection("tasks").document(firebaseId).delete()
+            print("deleted from firestore")
         } catch {
             print("Error deleting the task data: \(error)")
         }

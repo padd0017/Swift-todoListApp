@@ -22,6 +22,8 @@ struct CreateTaskView:  View {
     @State private var location: String = ""
     @State private var category: String = ""
     @State private var isDone: Bool = false
+    @State private var showError: Bool = false
+    @State private var errorMessage: String = ""
     
     var body: some View {
         NavigationStack {
@@ -45,10 +47,33 @@ struct CreateTaskView:  View {
                 }
                 
                 Button("Save") {
-                      dismiss()                 // Your save logic here
+                    
+                    Task {
+                        
+                        await saveTask()
+                        print("Task created")
+                    }                // Your save logic here
                 }
                 .disabled(title.isEmpty)
             }
         } //NavigationStack
+    }
+    
+    private func saveTask() async {
+        do {
+            let taskManager = DisplayTaskManager(modelContext: context, authManager: authManager)
+            
+            try await taskManager.createTask(
+                title: title,
+                notes: notes.isEmpty ? nil : notes,
+                dueDate: dueDate,
+                location: location.isEmpty ? nil : location,
+                category: category.isEmpty ? nil : category)
+            
+            dismiss()
+        } catch {
+            errorMessage = "Failed to save task: \(error.localizedDescription)"
+            showError = true
+        }
     }
 }
