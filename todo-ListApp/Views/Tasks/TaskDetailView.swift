@@ -15,16 +15,14 @@ struct TaskDetailView:  View {
     @EnvironmentObject var authManager: AuthManager
     var body: some View {
         NavigationStack {
-            ZStack {
+            VStack {
                 VStack{
-                    Text(task.title)
-                        .font(.headline)
                     if let dueDate = task.dueDate{
                         Text(dueDate, style: .date)
                     }
                 }
                 
-                VStack {
+                VStack(spacing: 20) {
                     if let notes = task.notes{
                         Text(notes)
                     }
@@ -32,10 +30,21 @@ struct TaskDetailView:  View {
                     if let location = task.location{
                         Text(location)
                     }
+                    
+                    if let Category = task.category{
+                        Text(Category)
+                    }
                 }
                 
                 
+                NavigationLink(destination: UpdateTaskView()) {
+                    Text("Update Task")
+                }
+                    
+                
+                
             }
+            .navigationTitle(task.title)
         }
     }
     }

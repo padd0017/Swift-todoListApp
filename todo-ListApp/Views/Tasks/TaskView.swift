@@ -17,7 +17,7 @@ struct TaskView:  View {
     @State private var taskToDelete: Tasks?
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 VStack {
                     if tasks.isEmpty {
