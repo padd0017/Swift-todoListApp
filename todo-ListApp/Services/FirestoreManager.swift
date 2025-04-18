@@ -66,24 +66,4 @@ class FirestoreManager {
             print("Error updating the task data: \(error)")
         }
     }
-    
-    
-//    func listAllTasks() async throws -> [Task] {
-//        var tasks: [Task] = []
-//        
-//        do {
-//            let snapshot = try await db.collection("tasks").getDocuments()
-//            
-//            for document in snapshot.documents {
-//                do {
-//                    let task = try  document.data(as: Task.self)
-//                    tasks.append(task)
-//                    
-//                }catch {
-//                    print("error decoding task: \(error)")
-//                }
-//            }
-//            return tasks
-//        }
-//    }
 }
