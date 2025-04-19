@@ -37,7 +37,6 @@ class FirestoreManager {
         
         do {
             try await db.collection("tasks").document(firebaseId).delete()
-            print("deleted from firestore")
         } catch {
             print("Error deleting the task data: \(error)")
         }
