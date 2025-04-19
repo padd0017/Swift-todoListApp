@@ -15,7 +15,12 @@ struct ProfileView:  View {
     @EnvironmentObject var authManager: AuthManager
     @Environment(\.modelContext) private var context
     var body: some View {
-        HStack{
+        VStack{
+            if let user = authManager.user{
+                
+                Text(user.email ?? "")
+            }
+            
             Button("Logout"){
                 Task {
                     for task in tasks{

@@ -35,6 +35,9 @@ class AuthManager: ObservableObject {
     
     func createAccount(email: String, password: String, name: String) async throws  -> Bool{
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
+
+
+        
         self.user = result.user
         self.isSignedIn = true
         return true
